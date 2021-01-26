@@ -138,8 +138,10 @@ func (list *ListResponse) GetMembers(params *InterestCategoriesQueryParams) (*Li
 		return nil, err
 	}
 
-	for _, m := range response.Members {
-		m.api = list.api
+	for idx := 0; idx < len(response.Members); idx++ {
+		v := response.Members[idx]
+		v.api = list.api
+		response.Members[idx] = v
 	}
 
 	return response, nil
